@@ -1,5 +1,5 @@
 javaee7-firstcup
 ==============
 
-##Basics Java EE 7 samples.
+##Getting started with Java EE 7
 
