@@ -15,6 +15,19 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
 		</license>
 	</licenses>
+	
+	<developers>
+        <developer>
+            <id>ecabrerar</id>
+            <name>Eudris Cabrera</name>
+            <email>eudris@gmail.com</email>
+            <url>https://github.com/ecabrerar</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>-4</timezone>
+        </developer>
+    </developers>
   
   <dependencies>
     <dependency>
@@ -25,8 +38,7 @@
     </dependency>
   </dependencies>
   <build>
-  <!-- Set the name of the war, used as the context root when the app is deployed -->
-    <finalName>simple-jax-ws</finalName>
+ 
     <plugins>
         <plugin>
 				<artifactId>maven-war-plugin</artifactId>

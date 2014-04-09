@@ -7,6 +7,28 @@
   <version>1.0-SNAPSHOT</version>
   <name>simple-jax-ws-client</name>
   <url>http://maven.apache.org</url>
+  
+  <licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<distribution>repo</distribution>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+		</license>
+	</licenses>
+	
+	<developers>
+        <developer>
+            <id>ecabrerar</id>
+            <name>Eudris Cabrera</name>
+            <email>eudris@gmail.com</email>
+            <url>https://github.com/ecabrerar</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>-4</timezone>
+        </developer>
+    </developers>
+    
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
