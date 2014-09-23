@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2014 ecabrerar.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en">
+   <h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico"/>
+
+    <title><ui:insert name="title">Default title</ui:insert></title>
+
+    <!-- Bootstrap core CSS -->
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+
+    <!-- Custom styles for this template -->
+    <h:outputStylesheet name="jumbotron-narrow.css" library="css"/>
+
+     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </h:head>
+
+ <h:body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><h:link value="Home" outcome="index.xhtml" /></li>
+          
+          <li><h:link value="Register a Book" outcome="register.xhtml" /></li>
+          <li><h:link value="Books" outcome="books.xhtml" /></li>
+        </ul>
+        <h3 class="text-muted"><h:link value="BookLibrary" outcome="index.xhtml" /></h3>
+       
+      </div>
+
+       <ui:insert name="content">Default content</ui:insert>
+
+
+
+      <div class="footer">
+        <p>BookLibrary (C) 2014 ecabrerar. A sample project to demonstrate JAX-RS Web Service client .</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   </h:body>
+</html>
