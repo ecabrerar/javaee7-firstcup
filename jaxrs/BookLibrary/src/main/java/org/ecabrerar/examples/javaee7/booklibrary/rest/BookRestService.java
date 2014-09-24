@@ -16,13 +16,8 @@
 package org.ecabrerar.examples.javaee7.booklibrary.rest;
 
 import java.net.URI;
-import javax.annotation.ManagedBean;
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
