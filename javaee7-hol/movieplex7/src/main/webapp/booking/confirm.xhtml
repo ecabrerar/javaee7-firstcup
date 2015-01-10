@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <c:choose>
+                    <c:when test="#{booking.theater == 'none'}">
+                        <h2>No theater found, choose a different time</h2>
+                        <h:form>
+                            Movie name: #{booking.movieName}<p/>
+                            Starts at: #{booking.startTime}<p/>
+                            <h:commandButton id="back" value="Back"
+                                             action="showtimes"/>
+                        </h:form>
+                    </c:when>
+                    <c:otherwise>
+                        <h2>Confirm ?</h2>
+                        <h:form>
+                            Movie name: #{booking.movieName}<p/>
+                            Starts at: #{booking.startTime}<p/>
+                            Theater: #{booking.theater}<p/>
+                            <p/><h:commandButton id="next" value="Book"
+                                                 action="print"/>
+                            <h:commandButton id="back" value="Back"
+                                             action="showtimes"/>
+                        </h:form>
+                    </c:otherwise>
+                </c:choose>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
