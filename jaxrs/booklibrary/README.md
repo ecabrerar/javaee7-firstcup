@@ -17,7 +17,7 @@ Getting Started
 
 NetBeans User - 7.3+
 * Clone the repository [JavaEE7 FirstCup](https://github.com/ecabrerar/javaee7-firstcup)
-* Open the project jaxrs/BookLibrary in NetBeans 
+* Open the project jaxrs/booklibrary in NetBeans 
 * Create a new derby DB database named "BookLibrary", with user/password "bookuser", establish a connection and execute the sql/Book.sql script.
 * Run the project
 
