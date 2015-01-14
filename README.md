@@ -3,7 +3,11 @@ javaee7-firstcup
 
 ##Getting started with Java EE 7
 
+These sample applications and the codes may not be following the best practices to prevent SQL injection, cross-side scripting attacks,escaping parameters, and other similar features expected of a robust
+enterprise application. 
 
+It is highly recommended to make sure that the code copied from these sample applications is updated to meet
+those requirements.
 
 #### Author
 
