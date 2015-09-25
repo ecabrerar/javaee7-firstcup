@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="org.cursofinalgrado.java_demo-jpa-petcare_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>org.ecabrerar.examples.petcare.Cita</class>
+    <class>org.ecabrerar.examples.petcare.Especie</class>
+    <class>org.ecabrerar.examples.petcare.Doctor</class>
+    <class>org.ecabrerar.examples.petcare.Cliente</class>
+    <class>org.ecabrerar.examples.petcare.Paciente</class>
+    <class>org.ecabrerar.examples.petcare.Raza</class>
+    <class>org.ecabrerar.examples.petcare.Pais</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/petcare"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="rootweb"/>
+    </properties>
+  </persistence-unit>
+</persistence>
