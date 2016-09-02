@@ -20,8 +20,7 @@ public class Book {
         this.name = name;
         this.isbn = isbn;
         this.author = author;
-    }    
-    
+    }
 
     public String getName() {
         return name;
@@ -37,9 +36,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return new StringBuilder()
+                .append(" name").append("=").append(name)
+                .append(" isbn").append("=").append(isbn)
+                .append(" author").append("=").append(author)
+                .toString();
     }
-    
-    
 
 }

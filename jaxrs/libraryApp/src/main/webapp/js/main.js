@@ -32,10 +32,16 @@ function sendBrowseRequest() {
 
 var wsUri = "ws://localhost:8080/libraryApp/app/websockets";
 
-var websocket = new WebSocket(wsUri);
+var websocket = new WebSocket(wsUri, 'echo-protocol');
 
 function sendSearchWSRequest(book) {
-    websocket.send(book);
+    
+    websocket.onopen = function () {
+     console.log('socket connection opened properly');
+     websocket.send(book); // send a message
+     console.log('message sent');
+   };
+   
     console.log("Searching for: " + book);
 }
 
@@ -95,4 +101,24 @@ function sendHoldRequest(book) {
 
 function browse_onclick() {
     return sendBrowseRequest();
+}
+
+function search_onclick(){
+    return sendSearchWSRequest(getValueFromTextField());
+}
+
+function checkout_onclick(){
+    return sendCheckoutRequest(getValueFromTextField());
+}
+
+function return_onclick(){
+    return sendReturnRequest(getValueFromTextField());
+}
+
+function hold_onclick(){
+    return sendHoldRequest(getValueFromTextField()); 
+}
+
+function getValueFromTextField(){
+    return document.getElementById("bookName").value;
 }
