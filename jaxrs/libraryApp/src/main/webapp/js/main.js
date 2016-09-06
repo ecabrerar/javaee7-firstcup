@@ -29,22 +29,22 @@ function sendBrowseRequest() {
     req.send(null);
 }
 
-
 var wsUri = "ws://localhost:8080/libraryApp/app/websockets";
 
-var websocket = new WebSocket(wsUri, 'echo-protocol');
+var websocket = new WebSocket(wsUri);
 
 function sendSearchWSRequest(book) {
     
-    websocket.onopen = function () {
-     console.log('socket connection opened properly');
-     websocket.send(book); // send a message
-     console.log('message sent');
-   };
-   
+    websocket.send(book); // send a message   
     console.log("Searching for: " + book);
+    websocket.onmessage = onMessage;
 }
 
+function onMessage(event) {
+    
+    console.log(event.data);
+    document.getElementById("output").innerHTML = event.data;
+}
 
 function sendCheckoutRequest(book) {
     var req = createRequest(); // defined above
