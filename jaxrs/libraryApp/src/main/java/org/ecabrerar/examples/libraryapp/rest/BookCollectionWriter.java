@@ -12,6 +12,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
+
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.ws.rs.WebApplicationException;
@@ -29,52 +30,54 @@ import org.ecabrerar.examples.libraryapp.domain.Book;
 @Provider
 public class BookCollectionWriter implements MessageBodyWriter<List<Book>> {
 
-    @Override
-    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
+	@Override
+	public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return true;
 
-    }
+	}
 
-    @Override
-    public long getSize(List<Book> books, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return -1;
-    }
+	@Override
+	public long getSize(List<Book> books, Class<?> type, Type genericType, Annotation[] annotations,
+			MediaType mediaType) {
+		return -1;
+	}
 
-    @Override
-    public void writeTo(List<Book> books, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
+	@Override
+	public void writeTo(List<Book> books, Class<?> type, Type genericType, Annotation[] annotations,
+			MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+			throws IOException, WebApplicationException {
 
-        StringWriter writer = new StringWriter();
+		if (mediaType.equals(MediaType.APPLICATION_JSON_TYPE)) {
 
-        if (mediaType.equals(MediaType.APPLICATION_JSON_TYPE)) {
+			try (StringWriter writer = new StringWriter()) {
 
-            try (JsonGenerator generator = Json.createGenerator(writer)) {
-                HashMap<String, Object> configs = new HashMap<>(1);
-                configs.put(JsonGenerator.PRETTY_PRINTING, true);
+				try (JsonGenerator generator = Json.createGenerator(writer)) {
+					HashMap<String, Object> configs = new HashMap<>(1);
+					configs.put(JsonGenerator.PRETTY_PRINTING, true);
 
-                generator.writeStartArray();
+					generator.writeStartArray();
 
-                for (Book book : books) {
+					books.stream().forEach(book -> generator.writeStartObject()
+															.write("Name", book.getName())
+															.write("ISBN", book.getIsbn())
+															.write("Author", book.getAuthor())
+															.writeEnd());
 
-                    generator.writeStartObject()
-                            .write("Name", book.getName())
-                            .write("ISBN", book.getIsbn())
-                            .write("Author", book.getAuthor())
-                            .writeEnd();
-                }
 
-                generator.writeEnd();
-            }
+					generator.writeEnd();
+				}
 
-            entityStream.write(writer.toString().getBytes());
+				entityStream.write(writer.toString().getBytes());
+			}
 
-        } else if (mediaType.equals(MediaType.TEXT_PLAIN_TYPE)) {
-            StringBuilder stringBuilder = new StringBuilder("Book ");
+		} else if (mediaType.equals(MediaType.TEXT_PLAIN_TYPE)) {
+			StringBuilder stringBuilder = new StringBuilder("Book ");
 
-            books.stream().forEach((Book book) -> stringBuilder.append(book.toString()).append("\n"));
+			books.stream().forEach((Book book) -> stringBuilder.append(book.toString()).append("\n"));
 
-            entityStream.write(stringBuilder.toString().getBytes());
-        }
+			entityStream.write(stringBuilder.toString().getBytes());
+		}
 
-    }
+	}
 
 }

@@ -32,7 +32,7 @@ public class BookResource {
     @Inject
     BookService bookService;
 
-    @GET   
+    @GET
     @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
     public List<Book> browseCollection() {
         return bookService.getBooks();
@@ -63,17 +63,13 @@ public class BookResource {
     @Produces({MediaType.TEXT_PLAIN})
     @Path("hold/{name}")
     public void asyncEcho(@PathParam("name") final String name, @Suspended final AsyncResponse ar) {
-        Executors.newSingleThreadExecutor().submit(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException ex) {
-                    ar.cancel();
-                }
-                ar.resume("Placed a hold for " + name);
-            }
-        });
+        Executors.newSingleThreadExecutor().submit(() -> {
+		    try {
+		        Thread.sleep(10000);
+		    } catch (InterruptedException ex) {
+		        ar.cancel();
+		    }
+		    ar.resume("Placed a hold for " + name);
+		});
     }
 }

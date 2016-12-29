@@ -28,44 +28,43 @@ import org.ecabrerar.examples.libraryapp.domain.Book;
 @Provider
 public class BookWriter implements MessageBodyWriter<Book> {
 
-    @Override
-    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return true;
+	@Override
+	public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return true;
 
-    }
+	}
 
-    @Override
-    public long getSize(Book t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return -1;
-    }
+	@Override
+	public long getSize(Book t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return -1;
+	}
 
-    @Override
-    public void writeTo(Book book, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
+	@Override
+	public void writeTo(Book book, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+			MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+			throws IOException, WebApplicationException {
 
-        StringWriter writer = new StringWriter();
+		if (mediaType.equals(MediaType.APPLICATION_JSON_TYPE)) {
 
-        if (mediaType.equals(MediaType.APPLICATION_JSON_TYPE)) {
+			try (StringWriter writer = new StringWriter()) {
+				try (JsonGenerator generator = Json.createGenerator(writer)) {
+					HashMap<String, Object> configs = new HashMap<>(1);
+					configs.put(JsonGenerator.PRETTY_PRINTING, true);
 
-            try (JsonGenerator generator = Json.createGenerator(writer)) {
-                HashMap<String, Object> configs = new HashMap<>(1);
-                configs.put(JsonGenerator.PRETTY_PRINTING, true);
+					generator.writeStartObject().write("Name", book.getName()).write("ISBN", book.getIsbn())
+							.write("Author", book.getAuthor()).writeEnd();
 
-                generator.writeStartObject()
-                        .write("Name", book.getName())
-                        .write("ISBN", book.getIsbn())
-                        .write("Author", book.getAuthor())
-                        .writeEnd();
+				}
 
-            }
+				entityStream.write(writer.toString().getBytes());
+			}
 
-            entityStream.write(writer.toString().getBytes());
+		} else if (mediaType.equals(MediaType.TEXT_PLAIN_TYPE)) {
+			String string = "Book ".concat(book.toString()).concat("\n");
 
-        } else if (mediaType.equals(MediaType.TEXT_PLAIN_TYPE)) {
-            String string = "Book ".concat(book.toString()).concat("\n");
+			entityStream.write(string.getBytes());
+		}
 
-            entityStream.write(string.getBytes());
-        }
-
-    }
+	}
 
 }
