@@ -29,10 +29,9 @@ public class BooksCollection {
 
 	public Book getBook(String isbn) {
 		return books.stream()
-				.filter(t -> t.getIsbn().equals(isbn))				
+				.filter(t -> t.getIsbn().equals(isbn))
 				.findAny()
-				.get();
-
+				.orElse(null);
 	}
 
 	public int getSize() {
