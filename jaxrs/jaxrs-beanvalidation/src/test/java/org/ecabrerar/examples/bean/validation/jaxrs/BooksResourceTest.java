@@ -22,26 +22,41 @@ import org.junit.Test;
 public class BooksResourceTest {
 
 	private static Client client;
-	private final String baseUri = "http://localhost:8080/api/library";
+	private final String baseUri = "http://localhost:8080/jaxrs-beanvalidation/app/library/books";
 
-	@BeforeClass
-    public static void setUp(){
-		client = ClientBuilder.newClient();
-	}
+        @BeforeClass
+        public static void setUp(){
+    	    client = ClientBuilder.newClient();
+        }
 
 	@Test
 	public void getBookTest(){
 
 		Response response = client.target(baseUri)
-						 		.path("books")
-						 		.resolveTemplate("{isbn}", "782345689")
-						 		.request(MediaType.APPLICATION_XML)
-						 		.get(Response.class);
+					  .path("/{isbn}")
+					  .resolveTemplate("isbn", "782345689")
+					  .request(MediaType.APPLICATION_XML)
+					  .get(Response.class);
 
 		List<ValidationError> errors = response.readEntity(new GenericType<List<ValidationError>>() {});
 
 
 		Assert.assertTrue(errors.isEmpty());
+
+	}
+	
+	@Test
+	public void getBookIsbnEmptyTest(){
+		Response response = client.target(baseUri)
+			  .path("/{isbn}")
+			  .resolveTemplate("isbn", "null")
+			  .request(MediaType.APPLICATION_XML)
+			  .get(Response.class);
+
+		List<ValidationError> errors = response.readEntity(new GenericType<List<ValidationError>>() {});
+		
+		Assert.assertTrue(!errors.isEmpty());
+		Assert.assertNotNull("Book does not exist for the ISBN requested", errors.get(0));
 
 	}
 }

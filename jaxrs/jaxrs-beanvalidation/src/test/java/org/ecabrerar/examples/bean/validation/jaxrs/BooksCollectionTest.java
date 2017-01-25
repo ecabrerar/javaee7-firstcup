@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.ecabrerar.examples.javax.rs.validation.Book;
+import org.ecabrerar.examples.javax.rs.validation.domain.Book;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,14 +27,14 @@ public class BooksCollectionTest {
 
 	@Test
 	public void getBookTest(){
-	 String isbn = "782345689";
+	    String isbn = "782345689";
 
-	  Optional<Book> opBook=	books.stream()
-								.filter(t -> t.equals(isbn))
-								.peek(System.out::println)
-								.findAny();
+	    Optional<Book> opBook=	books.stream()
+    								.filter(t -> t.getIsbn().equals(isbn))
+    								.peek(System.out::println)
+    								.findAny();
 
-	   Assert.assertTrue(opBook.isPresent());
+	    Assert.assertTrue(opBook.isPresent());
 	}
 
 }

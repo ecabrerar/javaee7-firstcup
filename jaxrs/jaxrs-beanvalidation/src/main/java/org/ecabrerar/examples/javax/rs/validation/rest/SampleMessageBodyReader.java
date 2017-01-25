@@ -1,4 +1,4 @@
-package org.ecabrerar.examples.javax.rs.validation;
+package org.ecabrerar.examples.javax.rs.validation.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +13,8 @@ import javax.ws.rs.ext.Provider;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import org.ecabrerar.examples.javax.rs.validation.domain.Book;
 
 /**
  * @author ecabrerar

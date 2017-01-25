@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.ecabrerar.examples.javax.rs.validation;
+package org.ecabrerar.examples.javax.rs.validation.rest;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,6 +15,8 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+
+import org.ecabrerar.examples.javax.rs.validation.domain.Book;
 
 /**
  * @author ecabrerar

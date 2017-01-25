@@ -1,4 +1,4 @@
-package org.ecabrerar.examples.javax.rs.validation;
+package org.ecabrerar.examples.javax.rs.validation.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,7 @@ public class BooksCollection {
 
 	public Book getBook(String isbn) {
 		return books.stream()
-				.filter(t -> t.equals(isbn))
-				.peek(t -> System.out.println("Filtered value: " + t.getIsbn()))
+				.filter(t -> t.getIsbn().equals(isbn))				
 				.findAny()
 				.get();
 
