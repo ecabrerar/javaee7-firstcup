@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;
+              charset=UTF-8">
+        <title>Library App</title>
+        <script src="js/main.js">
+        </script>
+
+    </head>
+    <body>
+        <h1 id="helloMessage">
+        </h1>
+        Please enter the following details:
+        <p>
+            Book Name:
+            <input type="text" value="Game of thrones" id="bookName"/>
+        </p>
+        <br>
+        <button onclick="search_onclick()">Search</button>
+        <button onclick="checkout_onclick()">Checkout</button>
+        <button onclick="return_onclick()">Return</button>
+        <button onclick="hold_onclick()">Hold</button>
+        <button onclick="browse_onclick()">Browse Collection</button>
+        <h2>Book Information</h2>
+        <h3>JAX-RS query sent by the Application:</h3>
+        <div id="query" style="border: 1px solid black; color: black;
+             height: 6em; width: 80%"></div>
+        <h3>Output from the JAX-RS query</h3>
+        <div id="output" style="border: 1px solid black; color: black;
+             height: 18em; width: 80%"></div>
+    </body>
+</html>
