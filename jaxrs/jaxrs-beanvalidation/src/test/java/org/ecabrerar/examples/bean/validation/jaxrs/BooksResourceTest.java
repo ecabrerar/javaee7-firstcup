@@ -3,10 +3,10 @@ package org.ecabrerar.examples.bean.validation.jaxrs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.client.Client;
@@ -71,6 +71,7 @@ public class BooksResourceTest {
 
 	}
 
+
 	private void logResponse(String method, Response response) {
 		StringBuilder builder = new StringBuilder(method).append("\n");
 		builder.append("Response: ").append(response).append("\n");
@@ -87,10 +88,10 @@ public class BooksResourceTest {
 	}
 
 	private Set<String> getValidationMessageTemplates(final List<ValidationError> errors) {
-		final Set<String> templates = new HashSet<>();
-		for (final ValidationError error : errors) {
-			templates.add(error.getMessageTemplate());
-		}
-		return templates;
+
+		return errors
+			   .stream()
+			   .map(error -> error.getMessageTemplate())
+			   .collect(Collectors.toSet());
 	}
 }

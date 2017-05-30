@@ -3,6 +3,12 @@ package org.ecabrerar.examples.bean.validation.jaxrs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import org.ecabrerar.examples.javax.rs.validation.domain.Book;
 import org.junit.Assert;
@@ -37,4 +43,18 @@ public class BooksCollectionTest {
 	    Assert.assertTrue(opBook.isPresent());
 	}
 
+	@Test
+	public void shouldReturnAValidationError(){
+
+		Book book = new Book("Effective Java", "2234555568", "");
+
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+	    Set<ConstraintViolation<Book>> violations = validator.validate(book);
+
+	    Assert.assertEquals(2,  violations.size());
+
+	    System.out.println(violations.stream().map(error -> error.getMessage()).collect(Collectors.joining(", ")));
+
+	}
 }
