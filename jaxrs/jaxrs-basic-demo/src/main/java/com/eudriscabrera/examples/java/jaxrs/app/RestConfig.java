@@ -17,8 +17,7 @@ public class RestConfig extends Application{
 	public Set<Class<?>> getClasses() {
 		
 		Set<Class<?>> classes = new HashSet<>();
-		classes.add(ServicioRestPais.class);
-		
+		classes.add(ServicioRestPais.class);		
 		
 		return classes;
 	}
