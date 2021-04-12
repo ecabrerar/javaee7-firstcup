@@ -26,8 +26,7 @@ public class ServicioRestPais {
 		return Response.ok(new GenericEntity<List<Pais>>(getPaises()) {
 		}).build();
 	}
-	
-	
+		
 
 	@GET
 	@Path("{id}")
