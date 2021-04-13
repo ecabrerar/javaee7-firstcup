@@ -1,7 +1,7 @@
 Prerequisites 
 ============
-Java 8+
-Apache Maven 3.6+
+* Java 8+
+* Apache Maven 3.6+
 
 
 Getting Started
