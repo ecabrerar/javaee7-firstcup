@@ -16,3 +16,4 @@ those requirements.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ecabrerar/javaee7-firstcup/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+[![DepShield Badge](https://depshield.sonatype.org/badges/owner/repository/depshield.svg)](https://depshield.github.io)
